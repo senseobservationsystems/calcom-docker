@@ -3,7 +3,7 @@ node_js:
   - 16
 
 services:
-  - docker`
+  - docker
 
 before_install:
 - git submodule update --init
