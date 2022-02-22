@@ -12,10 +12,10 @@ script:
 - cd calendso && yarn install
 - if [ "$TRAVIS_BRANCH" == "niceday/main" -a "$TRAVIS_EVENT_TYPE" == "push" ]; then
     docker build -t sensehealth/cal:master .;
-    docker tag sensehealth/cal:master sensehealth/cal:latest .;
+    docker tag sensehealth/cal:master sensehealth/cal:latest;
   elif [ "$TRAVIS_BRANCH" == "niceday/develop" -a "$TRAVIS_EVENT_TYPE" == "push" ]; then
     docker build -t sensehealth/cal:develop .;
   fi
 
 after_success:
-- docker push --all-tags sensehealth/cal;
+- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push --all-tags sensehealth/cal;
